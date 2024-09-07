@@ -1,11 +1,26 @@
-using Vite.AspNetCore;
+﻿using Vite.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddViteServices();
+#region *** 📦 Add Vite Services
+
+//
+// Adds services for Vite and tag helpers
+//
+var manifestServiceLifetime = 
+    builder.Environment.IsDevelopment() 
+        ? ServiceLifetime.Scoped     // Manifest updated on every request
+        : ServiceLifetime.Singleton; // Manfiest loaded once at startup
+
+builder.Services.AddViteServices(options =>
+{
+    options.Base = "dist";
+}, manifestServiceLifetime);
+
+#endregion
 
 var app = builder.Build();
 

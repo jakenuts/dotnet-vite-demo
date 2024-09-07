@@ -18,7 +18,12 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    "baseUrl": ".",
+    "paths": {
+    "@/*": ["ClientApp/*"]
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
+  },
+  "include": ["ClientApp/**/*.ts", "ClientApp/**/*.d.ts", "ClientApp/**/*.tsx", "ClientApp/**/*.vue", "Views/**/*.cshtml.ts"],
 }

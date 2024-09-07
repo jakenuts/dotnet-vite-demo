@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/DotnetVite.styles.css" asp-append-version="true" />
+
+     <link rel="stylesheet" vite-href="~/main.ts" asp-append-version="true" />
+
+     @await RenderSectionAsync("Head", required: false)
+
 </head>
 <body>
     <header>
@@ -34,6 +39,8 @@
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
+
+        <div id="vue-app"></div>
     </div>
 
     <footer class="border-top footer text-muted">
@@ -43,7 +50,9 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+   
+    <script type="module" vite-src="~/main.ts" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
