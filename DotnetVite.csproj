@@ -20,4 +20,8 @@
     <PackageReference Include="Vite.AspNetCore" Version="2.1.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\img\dotnet.svg" />
+  </ItemGroup>
+
 </Project>

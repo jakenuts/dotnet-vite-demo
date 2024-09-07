@@ -10,15 +10,12 @@ builder.Services.AddControllersWithViews();
 //
 // Adds services for Vite and tag helpers
 //
-var manifestServiceLifetime = 
-    builder.Environment.IsDevelopment() 
-        ? ServiceLifetime.Scoped     // Manifest updated on every request
+var manifestServiceLifetime =
+    builder.Environment.IsDevelopment()
+        ? ServiceLifetime.Scoped // Manifest updated on every request
         : ServiceLifetime.Singleton; // Manfiest loaded once at startup
 
-builder.Services.AddViteServices(options =>
-{
-    options.Base = "dist";
-}, manifestServiceLifetime);
+builder.Services.AddViteServices(options => { options.Base = "dist"; }, manifestServiceLifetime);
 
 #endregion
 
@@ -28,10 +25,10 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
+
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
 
 // ---- App Configuration ----
 // Use the Vite Development Server when the environment is Development.
@@ -53,7 +50,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    "default",
+    "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

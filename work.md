@@ -1,4 +1,4 @@
-# Instructions
+# Instructions for Claude-Dev
 
 1. Use globby to locate .cshtml.ts files in the views folder
 2. Append each of these as an entry point in vite.config.ts

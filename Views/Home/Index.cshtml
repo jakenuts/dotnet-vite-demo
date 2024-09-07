@@ -4,17 +4,18 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <a href="https://learn.microsoft.com/aspnet/core" target="_blank">
+        <img src="~/img/dotnet.svg" class="logo" alt="DotNet logo" style="height: 60px; padding-bottom: 10px" />
+    </a>
 </div>
 
 
-@section Scripts {
+@section Scripts 
+{
     <script>
         console.log('Hello from Index.cshtml inline view script');
     </script>
-    
+
     @* Reference the script associated with this view relative to the ClientApp 'base' folder *@
-    @*    <script type="module" vite-src="../Views/Home/Index.cshtml.ts" asp-append-version="true"></script>
-    *@
     <script type="module" vite-src="../Views/Home/Index.cshtml.ts" asp-append-version="true"></script>
 }

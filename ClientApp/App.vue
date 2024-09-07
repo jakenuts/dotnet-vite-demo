@@ -2,7 +2,8 @@
 import { inject } from 'vue'
 import HelloWorld from './components/HelloWorld.vue'
 
-const initialMessage = inject('initialMessage')
+const initialMessage = inject('initialMessage') as string ?? "Hello, Vite + Vue 3!"
+
 </script>
 
 <template>
@@ -13,9 +14,8 @@ const initialMessage = inject('initialMessage')
     <a href="https://vuejs.org/" target="_blank">
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
-  </div>
-  <p>{{ initialMessage }}</p>
-  <HelloWorld msg="Vite + Vue" />
+  </div>  
+  <HelloWorld :msg="initialMessage" />
 </template>
 
 <style scoped>
