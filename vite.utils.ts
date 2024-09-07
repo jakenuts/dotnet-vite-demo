@@ -1,43 +1,36 @@
-import path from 'path'
 import { fileURLToPath } from 'url'
+import * as globby from 'globby'
+import path from 'path';
+import {Rollup} from 'vite';
 
-//*********************************** 
-// Path resolution utilities
-//*********************************** 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
-export const resolve = (dir: string) => path.resolve(__dirname, dir)
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+export const resolve = (dir: string) => path.resolve(__dirname, dir);
 
-//*********************************** 
-// Asset file & folders structure
-//*********************************** 
-
-// Patterns for file folders
-export const filePatterns = {
-  css: /\.css$/,
-  image: /\.(png|jpe?g|gif|svg|webp|avif)$/,
-  font: /\.(woff2?|eot|ttf|otf)$/i,
+export async function getViewEntryPoints() {
+  const viewFiles = await globby.globby(['Views/**/*.cshtml.ts']);
+  return Object.fromEntries(
+    viewFiles.map(file => {
+      const parsedPath = path.parse(file);
+      const parentFolder = path.basename(parsedPath.dir).toLowerCase();
+      const fileName = parsedPath.name.replace('.cshtml', '').toLowerCase();
+      const entryPointName = `razor/${parentFolder}-${fileName}`;
+      return [entryPointName, resolve(file)];
+    })
+  );
 }
 
-// Asset file names function
-export const generateAssetStructure = (info: { name?: string }) => {
+export function generateAssetStructure(info: Rollup.PreRenderedAsset) {
   if (info.name) {
-    // If the file is a CSS file, save it to the css folder
-    if (filePatterns.css.test(info.name)) {
+    if (/\.css$/.test(info.name)) {
       return 'css/[name][extname]';
     }
-
-    // If the file is an image file, save it to the images folder
-    if (filePatterns.image.test(info.name)) {
+    if (/\.(png|jpe?g|gif|svg|webp|avif)$/.test(info.name)) {
       return 'images/[name][extname]';
     }
-
-    if (filePatterns.font.test(info.name)) {
+    if (/\.(woff2?|eot|ttf|otf)$/i.test(info.name)) {
       return 'fonts/[name][extname]';
     }
-    // If the file is any other type of file, save it to the assets folder 
     return 'assets/[name][extname]';
-  } else {
-    // If the file name is not specified, save it to the output directory
-    return '[name][extname]';
   }
+  return '[name][extname]';
 }

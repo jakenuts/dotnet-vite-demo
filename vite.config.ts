@@ -1,12 +1,14 @@
 import { defineConfig, UserConfig, ConfigEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { resolve, generateAssetStructure } from './vite.utils'
+import { resolve, generateAssetStructure, getViewEntryPoints } from './vite.utils'
 
-export default defineConfig((cfg: ConfigEnv) => {
+export default defineConfig(async (cfg: ConfigEnv) => {
 
   const isProduction = cfg.mode === 'production';
 
   console.log(`🔨 Building for ${cfg.mode} mode`);
+
+  const viewEntryPoints = await getViewEntryPoints();
 
   const config: UserConfig = {
     plugins: [vue()],
@@ -25,7 +27,8 @@ export default defineConfig((cfg: ConfigEnv) => {
         // Entry Points
         // =====================
         input: {
-          'main': 'ClientApp/main.ts'       
+          'main': 'ClientApp/main.ts',
+          ...viewEntryPoints
         },
         output:{
         entryFileNames: '[name].js',
@@ -36,8 +39,9 @@ export default defineConfig((cfg: ConfigEnv) => {
       }
     },
     resolve: {
-      alias: {
-        '@': resolve('ClientApp')
+      alias: {        
+        '@': resolve('ClientApp'),        
+        '#': resolve('Views'),
       }
     }
   };

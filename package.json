@@ -5,12 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite build --mode development --watch",
-    "build": "vue-tsc -b && vite build",        
+    "build": "vue-tsc -b && vite build",
     "build:dev": "vite build --mode development",
     "build:prod": "vue-tsc --noEmit  && vite build",
     "dotnet:run": "dotnet watch run --launch-profile \"http\""
   },
   "dependencies": {
+    "globby": "^14.0.2",
     "vue": "^3.4.37"
   },
   "devDependencies": {

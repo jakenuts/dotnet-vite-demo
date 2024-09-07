@@ -22,8 +22,9 @@
 
     "baseUrl": ".",
     "paths": {
-    "@/*": ["ClientApp/*"]
+      "@/*": [ "ClientApp/*" ],
+      "#/*": [ "Views/*" ]
+    }
   },
-  },
-  "include": ["ClientApp/**/*.ts", "ClientApp/**/*.d.ts", "ClientApp/**/*.tsx", "ClientApp/**/*.vue", "Views/**/*.cshtml.ts"],
+  "include": ["ClientApp/**/*.ts", "ClientApp/**/*.d.ts", "ClientApp/**/*.tsx", "ClientApp/**/*.vue", "Views/**/*.cshtml.ts"]
 }
