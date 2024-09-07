@@ -65,6 +65,13 @@ button:focus-visible {
   text-align: center;
 }
 
+
+.vue-app {
+    border: solid 1px #e5e5e5;
+    border-radius: 6px;
+    padding: 10px;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

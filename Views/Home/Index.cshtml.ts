@@ -1,7 +1,10 @@
-import { createApp } from 'vue'
-import '@/style.css'
+import { createApp,ref } from 'vue'
 import App from '@/App.vue'
 
-createApp(App).mount('#vue-app');
+const initialMessage = ref('Message from index.cshtml.ts');
+
+createApp(App)
+    .provide('initialMessage', initialMessage)
+    .mount('#razor-app');
 
 console.log('Hello from Index.cshtml.ts isolated');

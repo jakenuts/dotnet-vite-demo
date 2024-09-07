@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { inject } from 'vue'
 import HelloWorld from './components/HelloWorld.vue'
+
+const initialMessage = inject('initialMessage')
 </script>
 
 <template>
@@ -11,6 +14,7 @@ import HelloWorld from './components/HelloWorld.vue'
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
+  <p>{{ initialMessage }}</p>
   <HelloWorld msg="Vite + Vue" />
 </template>
 

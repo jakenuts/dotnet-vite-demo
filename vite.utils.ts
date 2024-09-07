@@ -20,6 +20,14 @@ export async function getViewEntryPoints() {
 }
 
 export function generateAssetStructure(info: Rollup.PreRenderedAsset) {
+    console.log(info);
+
+    if (info.originalFileName){
+      if (/\.cshtml/.test(info.originalFileName)) {
+        return 'razor/[name][extname]';
+      }
+    }
+
   if (info.name) {
     if (/\.css$/.test(info.name)) {
       return 'css/[name][extname]';

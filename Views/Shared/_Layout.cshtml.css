@@ -47,8 +47,6 @@ button.accept-policy {
   line-height: 60px;
 }
 
-#vue-app {
-    border: solid 1px #e5e5e5;
-    border-radius: 6px;
-    padding: 10px;
+.vue-apps {
+    display: flex;
 }
