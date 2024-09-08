@@ -1,36 +1,42 @@
 # DotnetVite Demo App
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+This proof-of-concept application demonstrates the integration of ASP.NET Core with Vite, showcasing an approach to bundling in a hybrid multi-page application using .NET.
 
-This demo application showcases the integration of ASP.NET Core with Vite and Vue.js, demonstrating a powerful approach to modern web development using .NET.
+## 🎯 Purpose
 
-## 🚀 Features
+The primary goal of this sample code is to demonstrate:
+
+1. Using Vite/Rollup bundling in an ASP.NET Core hybrid multi-page application
+2. Associating TypeScript files with Razor views, similar to the built-in CSS isolation feature
+
+## 🚀 Key Features
 
 - **ASP.NET Core** backend
-- **Vue.js** frontend with **Vite** for blazing fast builds
+- **Vite** for fast and efficient bundling
 - **TypeScript** support
 - **Razor Pages** integration
 - **cshtml.ts files** as entry points for Razor views
 
-## 🌟 Key Highlight: cshtml.ts Integration
+## 🌟 Main Concept: cshtml.ts Integration
 
-One of the standout features of this demo is the ability to use `cshtml.ts` files as entry points for Razor views. This innovative approach offers several benefits:
+The core feature of this demo is the use of `cshtml.ts` files as entry points for Razor views. This approach offers several advantages:
 
-1. **Type Safety**: Leverage TypeScript's strong typing in your Razor views.
-2. **Modern JavaScript**: Use the latest ECMAScript features in your view-specific scripts.
-3. **Bundling**: Vite automatically bundles your `cshtml.ts` files, optimizing performance.
-4. **Hot Module Replacement (HMR)**: Enjoy fast, efficient development with HMR support.
+1. **Colocation**: Define client-side code in the same location as your Razor view
+2. **Tree-shaking**: Benefit from Vite's tree-shaking capabilities for your client-side code
+3. **Code splitting**: Automatically chunk your client-side code for optimal loading
+4. **Improved navigation**: Easier to locate and manage associated client-side code for each view
 
 ### How it works:
 
-1. Create a `[ViewName].cshtml.ts` file alongside your Razor view.
-2. Write your TypeScript code in this file.
-3. The build process will automatically bundle this file and make it available to your Razor view.
+1. Create a `[ViewName].cshtml.ts` file alongside your Razor view
+2. Write your TypeScript code in this file
+3. Vite/globby gathers these files and turns them into entry points for each page
+4. The build process bundles these files, making them available to your Razor views
 
 Example:
 ```typescript
 // Index.cshtml.ts
-console.log('This script is specific to the Index view!');
+console.log('This script is associated with the Index view');
 ```
 
 ## 🛠️ Setup and Installation
@@ -39,16 +45,26 @@ console.log('This script is specific to the Index view!');
 2. Navigate to the project directory
 3. Run `dotnet restore` to restore .NET dependencies
 4. Run `npm install` or `pnpm install` to install frontend dependencies
-5. Use `dotnet run` to start the application
+5. Run `npm run dev` to start the Vite development server
+6. Use `dotnet run` to start the application
 
-## 📚 Learn More
+## 💻 Development Mode
+
+While hot module replacement (HMR) is possible with Vite.AspNetCore, this sample takes a different approach:
+
+- In development mode, all files are written to disk
+- The sample utilizes ASP.NET Core's built-in hot reloading to update on changes
+- This approach provides a simpler setup while still offering quick feedback during development
+
+## 📦 Dependencies
+
+This project uses [Vite.AspNetCore](https://github.com/Eptagone/Vite.AspNetCore) to enable reading the Vite manifest for generating links to bundled files in Razor views.
+
+## 📚 Further Reading
 
 For more information on the technologies used in this demo:
 
-- [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/)
-- [Vue.js](https://vuejs.org/)
-- [Vite](https://vitejs.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
+- [Vite.AspNetCore](https://github.com/Eptagone/Vite.AspNetCore)
 
 ## 📄 License
 
