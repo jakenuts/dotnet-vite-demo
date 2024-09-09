@@ -62,11 +62,10 @@ While hot module replacement (HMR) is possible with Vite.AspNetCore, this sample
 
 This project uses [Vite.AspNetCore](https://github.com/Eptagone/Vite.AspNetCore) to enable reading the Vite manifest for generating links to bundled files in Razor views.
 
-## 📚 Further Reading
+## 📚 Next Steps
 
-For more information on the technologies used in this demo:
-
-- [Vite.AspNetCore](https://github.com/Eptagone/Vite.AspNetCore)
+- Add a tag helper <script asp-entry\> to automatically associate code with page
+- How to handle nested razor, components?
 
 ## 📄 License
 
