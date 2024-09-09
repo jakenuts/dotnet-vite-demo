@@ -1,3 +1,5 @@
+![screenshot showing 2 vue apps](./IMG_7538.jpeg "screenshot")
+
 # DotnetVite Demo App
 
 This proof-of-concept application demonstrates the integration of ASP.NET Core with Vite, showcasing an approach to bundling in a hybrid multi-page application using .NET.
